@@ -12,6 +12,7 @@ const App = () => {
     <Sidebar />
       <Routes>
       <Route path="/" element={<HomePage />} />
+      {/* route */}
         <Route path="/Home" element={<HomePage />} />
         <Route path="/Preview" element={<Datatable />} />
         <Route path="/Add" element={<AddDataTable />} />
