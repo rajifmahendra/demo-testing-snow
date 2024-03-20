@@ -3,7 +3,6 @@ import $ from "jquery";
 import "datatables.net-dt/css/dataTables.dataTables.css";
 import "datatables.net-dt";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const Datatable = () => {
   const tableRef = useRef();
@@ -25,9 +24,9 @@ const Datatable = () => {
   }, []);
   return (
     <div style={{ marginTop: "100px" }}>
-      <button className="btn-column">
-        <Link to="/add">Add Column</Link>
-      </button>
+      <div>
+        <h3>Table user_data Records</h3>
+      </div>
       {data ? (
         <table ref={tableRef}>
           <thead>
