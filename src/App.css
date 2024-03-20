@@ -128,4 +128,8 @@ li:hover {
 .btn-column a {
   color: white;
   text-decoration: none;
+} 
+
+table th td {
+  text-align: left;
 }

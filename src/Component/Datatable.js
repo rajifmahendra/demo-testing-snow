@@ -7,12 +7,14 @@ import axios from "axios";
 const Datatable = () => {
   const tableRef = useRef();
   const [data, setData] = useState();
+  const [column, setColumn] = useState();
 
   const getData = async () => {
     try {
       const res = await axios.get("https://dummyjson.com/products");
       setData(res.data.products);
-      console.log(res.data.products);
+      const key = Object.keys(res.data.products[0]);
+      setColumn([key[7], key[8], key[1], key[3], key[5], key[6]]);
     } catch (error) {}
   };
   useEffect(() => {
@@ -22,8 +24,9 @@ const Datatable = () => {
     };
     initialData();
   }, []);
+  // 7, 8, 1, 3, 5, 6,
   return (
-    <div style={{ marginTop: "100px" }}>
+    <div style={{ marginLeft: "100px", marginTop: "80px" }}>
       <div>
         <h3>Table user_data Records</h3>
       </div>
@@ -31,24 +34,28 @@ const Datatable = () => {
         <table ref={tableRef}>
           <thead>
             <tr>
-              <th>Brand</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Rating</th>
-              <th>Stock</th>
-              <th>Discount</th>
+              {/* <th>Brand</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Stock</th>
+                <th>Discount</th> */}
+              {column?.map((item, index) => (
+                <th key={index}>{item}</th>
+              ))}
             </tr>
           </thead>
           <tbody>
             {data &&
-              data.slice(1, 10).map((item, index) => (
+              data.map((item, index) => (
                 <tr key={index}>
                   <td>{item.brand}</td>
+                  <td>{item.category}</td>
                   <td>{item.title}</td>
                   <td>{item.price}</td>
                   <td>{item.rating}</td>
                   <td>{item.stock}</td>
-                  <td>{item.discountPercentage}</td>
+                  {/* <td>{item.discountPercentage}</td> */}
                 </tr>
               ))}
           </tbody>
