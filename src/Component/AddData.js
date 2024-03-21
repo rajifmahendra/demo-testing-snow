@@ -57,57 +57,67 @@ function AddData() {
   }, []);
   // 7, 8, 1, 3, 5, 6,
   return (
-    <div className="card">
-      <h3>Sapura_Main Database</h3>
-      <h4>Active Columns</h4>
-      <form id="myForm1">
-        <ul>
-          {/* <li>Brand</li>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: additionalFields > 1 || column > 1 ? "start" : "center",
+        // width: "100vw",
+        minHeight: "100vh",
+      }}
+    >
+      <div className="card">
+        <h3>Sapura_Main Database</h3>
+        <h4>Active Columns</h4>
+        <form id="myForm1">
+          <ul>
+            {/* <li>Brand</li>
           <li>title</li>
           <li>Record 3</li>
           <li>Record 4</li>
           <li>Record 5</li> */}
-          {column.map((item, index) => (
-            <li key={index}>{item}</li>
+            {column.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+          {additionalFields.map((field, index) => (
+            <div className="form-group" key={field.id}>
+              <label htmlFor={`additional-field-${index + 1}`}>
+                New Column Name:
+              </label>
+              <button
+                type="button"
+                className="btn-remove"
+                onClick={() => removeInputField(field.id)}
+              >
+                -
+              </button>
+              <input
+                type="text"
+                id={`additional-field-${index + 1}`}
+                name={`additional-field-${index + 1}`}
+                value={field.value}
+                onChange={(e) => {
+                  const newValue = e.target.value;
+                  setAdditionalFields((prevFields) => {
+                    const updatedFields = [...prevFields];
+                    updatedFields[index].value = newValue;
+                    return updatedFields;
+                  });
+                }}
+              />
+            </div>
           ))}
-        </ul>
-        {additionalFields.map((field, index) => (
-          <div className="form-group" key={field.id}>
-            <label htmlFor={`additional-field-${index + 1}`}>
-              New Column Name:
-            </label>
-            <button
-              type="button"
-              className="btn-remove"
-              onClick={() => removeInputField(field.id)}
-            >
-              -
+          <div className="btn-container">
+            <button type="button" className="btn-add" onClick={addInputField}>
+              +
             </button>
-            <input
-              type="text"
-              id={`additional-field-${index + 1}`}
-              name={`additional-field-${index + 1}`}
-              value={field.value}
-              onChange={(e) => {
-                const newValue = e.target.value;
-                setAdditionalFields((prevFields) => {
-                  const updatedFields = [...prevFields];
-                  updatedFields[index].value = newValue;
-                  return updatedFields;
-                });
-              }}
-            />
+            <button type="button" className="btn-submit" onClick={submitForm}>
+              Submit
+            </button>
           </div>
-        ))}
-        <div className="btn-container">
-          <button type="button" className="btn-add" onClick={addInputField}>
-            +
-          </button>
-          <button type="button" className="btn-submit" onClick={submitForm}>
-            Submit
-          </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

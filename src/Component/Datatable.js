@@ -26,55 +26,55 @@ const Datatable = () => {
   }, []);
   // 7, 8, 1, 3, 5, 6,
   return (
-    <div style={{ marginLeft: "100px", marginTop: "80px" }}>
+    <div
+      style={{
+        marginTop: "40px",
+        marginLeft: "170px",
+        display: "flex",
+        padding: "5px 20px 20px 20px",
+        justifyContent: "center",
+      }}
+    >
       <div>
-        <h3>Table user_data Records</h3>
+        <div>
+          <h3>Table user_data Records</h3>
+        </div>
+        {data ? (
+          <table ref={tableRef}>
+            <thead>
+              <tr>
+                {column?.map((item, index) => (
+                  <th key={index}>{item}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {data &&
+                data.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.brand}</td>
+                    <td>{item.category}</td>
+                    <td>{item.title}</td>
+                    <td>{item.price}</td>
+                    <td>{item.rating}</td>
+                    <td>{item.stock}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                {column?.map((item, index) => (
+                  <th key={index}>{item}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        )}
       </div>
-      {data ? (
-        <table ref={tableRef}>
-          <thead>
-            <tr>
-              {/* <th>Brand</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Rating</th>
-                <th>Stock</th>
-                <th>Discount</th> */}
-              {column?.map((item, index) => (
-                <th key={index}>{item}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data &&
-              data.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.brand}</td>
-                  <td>{item.category}</td>
-                  <td>{item.title}</td>
-                  <td>{item.price}</td>
-                  <td>{item.rating}</td>
-                  <td>{item.stock}</td>
-                  {/* <td>{item.discountPercentage}</td> */}
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Brand</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Rating</th>
-              <th>Stock</th>
-              <th>Discount</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      )}
     </div>
   );
 };

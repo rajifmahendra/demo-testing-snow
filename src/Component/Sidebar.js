@@ -38,6 +38,7 @@ const styles = {
     left: 0,
     paddingTop: "20px",
     fontFamily: "Arial, sans-serif",
+    zIndex: 99,
   },
   logo: {
     textAlign: "center",
